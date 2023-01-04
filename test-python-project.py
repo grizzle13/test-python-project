@@ -4,6 +4,9 @@ import scipy
 import pandas
 
 def hello_world():
+    """Prints "Hello world!"
+    Also, this is how you comment functions.
+    """
     print("Hello world!")
 
 hello_world()
