@@ -5,20 +5,33 @@ import matplotlib.pyplot as plt
 import numpy as np
 import scipy as sp
 import pandas as pd
+import pathlib
 # import tkinter as tk           # This would open a dialog to select a file but
 # from tkinter import filedialog # it doesn't seem to work with the venv
 # file_path = filedialog.askopenfilename()
 
-# %% Import and plot raw data
-data = pd.read_excel('/Users/briggssa/Repos/test-python-project/TestView_Data_1E-6_20221209.xlsx')
-# print(data)
-plt.plot(data.Stroke, data.Load)
-plt.xlabel('Stroke (in)')
-plt.ylabel('Load (lbs)')
-plt.savefig('/Users/briggssa/Repos/test-python-project/true_data_raw.png')
-plt.show()
-# data1 = np.loadtxt("/Users/briggssa/Repos/test-python-project/test-data.csv", delimiter=",", dtype=int, skiprows=1)
-# print(data1)
+# %% Import raw data
+data_dir = '/Users/briggssa/Repos/test-python-project/'
+data_file = 'TestView_Data_1E-6_20221209.xlsx'
+data_type = pathlib.Path(data_file).suffix
+data_path = data_dir
+data_path += data_file
+if data_type == '.xlsx':
+    data_name = data_file[0:-5]
+    data = pd.read_excel(data_path)
+elif data_type == '.csv':
+    data_name = data_file[0:-4]
+    data = pd.read_csv(data_path)
+else:
+    print('Invalid data type')
+    stop()
+
+## The following lines will plot the raw data
+# plt.plot(data.Stroke, data.Load)
+# plt.xlabel('Stroke (in)')
+# plt.ylabel('Load (lbs)')
+# plt.savefig('/Users/briggssa/Repos/test-python-project/true_data_raw.png')
+# plt.show()
 
 # %% Process raw data and plot processed data
 sample_area = 0.05 # in^2
@@ -30,5 +43,11 @@ plt.plot(Strain, Stress_MPa)
 plt.xlabel('Strain')
 plt.ylabel('Stress (MPa)')
 plt.title('Stress/Strain Plot for 316L in Molten FLiNaK at a Strain Rate of 1e-6 (in/in)/sec')
-plt.savefig('/Users/briggssa/Repos/test-python-project/true_data_final.png')
+plot_file_type = '.png'
+plot_out_path = data_dir # Will output plot in same directory with same name as input file
+plot_out_path += data_name
+plot_out_path += plot_file_type
+plt.savefig(plot_out_path)
 plt.show()
+
+# %%
