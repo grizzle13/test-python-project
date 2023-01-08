@@ -5,10 +5,16 @@ import matplotlib.pyplot as plt
 import numpy as np
 import scipy as sp
 import pandas as pd
-# import tkinter as tk           # This would open a dialog to select a file but
-# from tkinter import filedialog # it doesn't seem to work with the venv
-# file_path = filedialog.askopenfilename()
 
+# %% Hello world!!
+
+def hello_world():
+    """Prints "Hello world!"
+    Also, this is how you comment functions.
+    """
+    print("Hello world!")
+
+hello_world()
 # %% Import and plot raw data
 data = pd.read_excel('/Users/briggssa/Repos/test-python-project/TestView_Data_1E-6_20221209.xlsx')
 # print(data)
@@ -32,3 +38,18 @@ plt.ylabel('Stress (MPa)')
 plt.title('Stress/Strain Plot for 316L in Molten FLiNaK at a Strain Rate of 1e-6 (in/in)/sec')
 plt.savefig('/Users/briggssa/Repos/test-python-project/true_data_final.png')
 plt.show()
+# %% Matplotlib Testing
+test_data=pd.read_csv('/Users/briggssa/Repos/test-python-project/test-data.csv')
+print(test_data)
+
+plt.plot(test_data.x, test_data.y)
+plt.xlabel('x')
+plt.ylabel('y')
+plt.savefig('/Users/briggssa/Repos/test-python-project/test_data.png')
+plt.show()
+
+# fig, ax = plt.subplots()
+# ax.plot([1, 2, 3, 4], [1, 4, 2, 3]);
+# data3=data2.x**2
+# print(data3)
+# Install Python Flask
