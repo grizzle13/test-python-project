@@ -11,8 +11,8 @@ import pathlib
 # file_path = filedialog.askopenfilename()
 
 # %% Import raw data
-data_dir = '/Users/briggssa/Repos/test-python-project/'
-data_file = 'TestView_Data_1E-6_20221209.xlsx'
+data_dir = r'/Users/briggssa/Repos/test-python-project/'
+data_file = r'TestView_Data_1E-6_20221209.xlsx'
 data_type = pathlib.Path(data_file).suffix
 data_path = data_dir
 data_path += data_file
@@ -34,7 +34,7 @@ else:
 # plt.show()
 
 # %% Process raw data and plot processed data
-sample_area = 0.05 # in^2
+sample_area = 0.025 # in^2
 sample_gaugelength = 1.13 # in
 Strain = (data.Stroke - data.Stroke[0]) / sample_gaugelength
 Stress_psi = data.Load / sample_area
@@ -47,6 +47,7 @@ plot_file_type = '.png'
 plot_out_path = data_dir # Will output plot in same directory with same name as input file
 plot_out_path += data_name
 plot_out_path += plot_file_type
+plt.grid(True)
 plt.savefig(plot_out_path)
 plt.show()
 
